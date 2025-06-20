@@ -5,7 +5,6 @@ services:
     image: cd_pipeline 
     restart: always
     container_name: cd_pipeline 
-    env_file: .env
     ports:
       - "9000:9000"
     networks:
