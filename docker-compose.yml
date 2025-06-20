@@ -1,0 +1,21 @@
+services:
+  cd_pipeline:
+    build:
+      context: ./
+    image: cd_pipeline 
+    restart: always
+    container_name: cd_pipeline 
+    env_file: .env
+    ports:
+      - "9000:9000"
+    networks:
+      - cd_pipeline
+    volumes:
+      - ./:/app/:delegated #delegates speeds up mac os volumes
+    command:
+      - make
+      - build
+
+networks:
+  cd_pipeline:
+    driver: bridge
