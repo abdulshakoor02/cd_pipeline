@@ -12,7 +12,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Invalid method", http.StatusMethodNotAllowed)
 		return
 	}
-	// You can parse the payload here if needed
+
 	go func() {
 		cmd := exec.Command("zsh", "-lc", "./sh/erp_backend.sh")
 		err := cmd.Run()
