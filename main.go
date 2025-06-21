@@ -37,6 +37,7 @@ func cdHandler(w http.ResponseWriter, r *http.Request) {
 		}
 	}()
 	log.Printf("Deploy triggered %v", w)
+	http.Error(w, "success", http.StatusOK)
 }
 
 func crmHandler(w http.ResponseWriter, r *http.Request) {
