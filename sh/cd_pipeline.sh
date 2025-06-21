@@ -7,7 +7,9 @@ LOG_FILE="$SCRIPT_DIR/erp_deploy.log"
   echo "=============================="
   echo "Deploy cdapp script started at $(date)"
 
-  export PATH=/usr/local/go/bin:$PATH
+  cd ~
+
+  source .zshrc
 
   cd /home/wethinkdigital/myapps/cd_pipeline || { echo "Failed to change directory"; exit 1; }
 
