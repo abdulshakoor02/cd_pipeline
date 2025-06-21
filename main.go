@@ -17,7 +17,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 		cmd := exec.Command("./sh/erp_backend.sh")
 		err := cmd.Run()
 		if err != nil {
-			log.Printf("Deploy failed: %v", err)
+			log.Printf("Deploy for erp_backend failed: %v", err)
 		}
 	}()
 	log.Printf("Deploy triggered %v", w)
@@ -33,7 +33,7 @@ func cdHandler(w http.ResponseWriter, r *http.Request) {
 		cmd := exec.Command("./sh/cd_pipeline.sh")
 		err := cmd.Run()
 		if err != nil {
-			log.Printf("Deploy failed: %v", err)
+			log.Printf("Deploy for cd app failed: %v", err)
 		}
 	}()
 	log.Printf("Deploy triggered %v", w)
@@ -49,7 +49,7 @@ func crmHandler(w http.ResponseWriter, r *http.Request) {
 		cmd := exec.Command("./sh/crm.sh")
 		err := cmd.Run()
 		if err != nil {
-			log.Printf("Deploy failed: %v", err)
+			log.Printf("Deploy for crm failed: %v", err)
 		}
 	}()
 	log.Printf("Deploy triggered %v", w)
