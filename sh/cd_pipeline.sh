@@ -15,7 +15,7 @@ LOG_FILE="$SCRIPT_DIR/erp_deploy.log"
   git pull || { echo "Git pull failed"; exit 1; }
 
   echo "download dependencies"
-  go mod download || { echo "downloading dependencies failed"; exit 1; }
+  /usr/local/go/bin/go mod download || { echo "downloading dependencies failed"; exit 1; }
 
   echo "building the go app"
   go build -o app || { echo "building the go app failed"; exit 1; }
