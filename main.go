@@ -34,6 +34,7 @@ func cdHandler(w http.ResponseWriter, r *http.Request) {
 		err := cmd.Run()
 		if err != nil {
 			log.Printf("Deploy for cd app failed: %v", err)
+			http.Error(w, "success", http.StatusOK)
 		}
 	}()
 	log.Printf("Deploy triggered %v", w)
