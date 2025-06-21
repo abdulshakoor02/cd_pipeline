@@ -7,7 +7,6 @@ import (
 	"os/exec"
 )
 
-// test
 func handler(w http.ResponseWriter, r *http.Request) {
 	if r.Method != "POST" {
 		http.Error(w, "Invalid method", http.StatusMethodNotAllowed)
