@@ -14,7 +14,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	go func() {
-		cmd := exec.Command("zsh", "-lc", "./sh/erp_backend.sh")
+		cmd := exec.Command("bash", "-lc", "./sh/erp_backend.sh")
 		err := cmd.Run()
 		if err != nil {
 			log.Printf("Deploy for erp_backend failed: %v", err)
@@ -48,7 +48,7 @@ func crmHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	// You can parse the payload here if needed
 	go func() {
-		cmd := exec.Command("./sh/crm.sh")
+		cmd := exec.Command("bash", "-lc", "./sh/crm.sh")
 		err := cmd.Run()
 		if err != nil {
 			log.Printf("Deploy for crm failed: %v", err)
