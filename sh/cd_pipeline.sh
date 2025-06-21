@@ -12,8 +12,11 @@ LOG_FILE="$SCRIPT_DIR/erp_deploy.log"
   echo "Pulling latest code from Git..."
   git pull || { echo "Git pull failed"; exit 1; }
 
+  echo "download dependencies"
+  go mod download || { echo "building the go app failed"; exit 1; }
+
   echo "building the go app"
-  make build || { echo "building the go app failed"; exit 1; }
+  go build -o app || { echo "building the go app failed"; exit 1; }
 
   echo "restarting the app"
   systemctl restart cdapp.service || { echo "restarting the app failed"; exit 1; }
