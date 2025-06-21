@@ -7,6 +7,8 @@ import (
 	"os/exec"
 )
 
+//test
+
 func handler(w http.ResponseWriter, r *http.Request) {
 	if r.Method != "POST" {
 		http.Error(w, "Invalid method", http.StatusMethodNotAllowed)
@@ -14,7 +16,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	}
 	// You can parse the payload here if needed
 	go func() {
-		cmd := exec.Command("./sh/erp_backend.sh")
+		cmd := exec.Command("zsh", "-lc", "./sh/erp_backend.sh")
 		err := cmd.Run()
 		if err != nil {
 			log.Printf("Deploy for erp_backend failed: %v", err)
