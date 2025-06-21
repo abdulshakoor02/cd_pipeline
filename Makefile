@@ -3,4 +3,3 @@ SHELL=/bin/bash
 build:
 	go mod download
 	go build -buildvcs=false -o app
-	./app

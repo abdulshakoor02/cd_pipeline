@@ -12,8 +12,11 @@ LOG_FILE="$SCRIPT_DIR/erp_deploy.log"
   echo "Pulling latest code from Git..."
   git pull || { echo "Git pull failed"; exit 1; }
 
-  echo "Restarting Docker container..."
-  docker restart erp_backend || { echo "Docker restart failed"; exit 1; }
+  echo "building the go app"
+  make build || { echo "Docker restart failed"; exit 1; }
+
+  echo "restarting the app"
+  systemctl restart cdapp.service || { echo "restarting the app failed"; exit 1; }
 
   echo "Deploy erp_backend script finished at $(date)"
 } >> "$LOG_FILE" 2>&1
