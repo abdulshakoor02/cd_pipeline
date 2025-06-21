@@ -1,10 +1,19 @@
 #!/bin/bash
 
-echo "Deploy erp_backend script started at $(date)" >> ./erp_deploy.log
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+LOG_FILE="$SCRIPT_DIR/erp_deploy.log"
 
-cd /home/wethinkdigital/myapps/erp_backend_go                                                                                                           
-git pull
-docker restart erp_backend
+{
+  echo "=============================="
+  echo "Deploy erp_backend script started at $(date)"
 
-echo "Deploy erp_backend script finished at $(date)" >> ./erp_deploy.log
+  cd /home/wethinkdigital/myapps/erp_backend_go || { echo "Failed to change directory"; exit 1; }
 
+  echo "Pulling latest code from Git..."
+  git pull || { echo "Git pull failed"; exit 1; }
+
+  echo "Restarting Docker container..."
+  docker restart erp_backend || { echo "Docker restart failed"; exit 1; }
+
+  echo "Deploy erp_backend script finished at $(date)"
+} >> "$LOG_FILE" 2>&1
