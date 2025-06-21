@@ -1,7 +1,5 @@
 #!/bin/bash
 
-source ~/.bashrc
-
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 LOG_FILE="$SCRIPT_DIR/erp_deploy.log"
 
@@ -18,7 +16,7 @@ LOG_FILE="$SCRIPT_DIR/erp_deploy.log"
   /usr/local/go/bin/go mod download || { echo "downloading dependencies failed"; exit 1; }
 
   echo "building the go app"
-  go build -o app || { echo "building the go app failed"; exit 1; }
+  /usr/local/go/bin/go build -o app || { echo "building the go app failed"; exit 1; }
 
   echo "restarting the app"
   systemctl restart cdapp.service || { echo "restarting the app failed"; exit 1; }
