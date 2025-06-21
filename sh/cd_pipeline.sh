@@ -5,15 +5,18 @@ LOG_FILE="$SCRIPT_DIR/erp_deploy.log"
 
 {
   echo "=============================="
-  echo "Deploy script started at $(date)"
+  echo "Deploy cdapp script started at $(date)"
 
   cd /home/wethinkdigital/myapps/cd_pipeline || { echo "Failed to change directory"; exit 1; }
 
   echo "Pulling latest code from Git..."
   git pull || { echo "Git pull failed"; exit 1; }
 
-  echo "Restarting Docker container..."
-  docker restart cd_pipeline || { echo "Docker restart failed"; exit 1; }
+  echo "building the go app"
+  make build || { echo "building the go app failed"; exit 1; }
 
-  echo "Deploy script finished at $(date)"
+  echo "restarting the app"
+  systemctl restart cdapp.service || { echo "restarting the app failed"; exit 1; }
+
+  echo "Deploy cdapp script finished at $(date)"
 } >> "$LOG_FILE" 2>&1
