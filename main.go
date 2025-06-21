@@ -14,7 +14,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	}
 	// You can parse the payload here if needed
 	go func() {
-		cmd := exec.Command("/sh", "erp_backend.sh")
+		cmd := exec.Command("./sh/erp_backend.sh")
 		err := cmd.Run()
 		if err != nil {
 			log.Printf("Deploy failed: %v", err)
@@ -30,7 +30,7 @@ func cdHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	// You can parse the payload here if needed
 	go func() {
-		cmd := exec.Command("/sh", "erp_backend.sh")
+		cmd := exec.Command("./sh/cd_pipeline.sh")
 		err := cmd.Run()
 		if err != nil {
 			log.Printf("Deploy failed: %v", err)
