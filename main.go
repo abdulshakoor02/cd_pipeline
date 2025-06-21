@@ -30,7 +30,7 @@ func cdHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	// You can parse the payload here if needed
 	go func() {
-		cmd := exec.Command("./sh/cd_pipeline.sh")
+		cmd := exec.Command("zsh", "-lc", "./sh/cd_pipeline.sh")
 		err := cmd.Run()
 		if err != nil {
 			log.Printf("Deploy for cd app failed: %v", err)
