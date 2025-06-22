@@ -15,6 +15,9 @@ LOG_FILE="$SCRIPT_DIR/erp_deploy.log"
   echo "building the next crm app"
   npm run build || { echo "building the crm app failed"; exit 1; }
 
+  echo "building the next crm app"
+  npm run build || { echo "building the crm app failed"; exit 1; }
+
   echo "restarting the app"
   pm2 restart crm || { echo "restarting the app failed"; exit 1; }
 
