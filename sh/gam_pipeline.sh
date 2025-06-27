@@ -12,7 +12,7 @@ LOG_FILE="$SCRIPT_DIR/erp_deploy.log"
   echo "Pulling latest code from Git..."
   git pull || { echo "Git pull failed"; exit 1; }
 
-  echo "building the next crm app"
+  echo "building the next gam app"
   ~/.nvm/versions/node/v21.1.0/bin/npm run build || { echo "building the crm app failed"; exit 1; }
 
   echo "restarting the app"
