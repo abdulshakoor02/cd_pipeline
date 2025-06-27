@@ -13,10 +13,10 @@ LOG_FILE="$SCRIPT_DIR/erp_deploy.log"
   git pull || { echo "Git pull failed"; exit 1; }
 
   echo "building the next gam app"
-  ~/.nvm/versions/node/v21.1.0/bin/npm run build || { echo "building the crm app failed"; exit 1; }
+  /root/.nvm/versions/node/v21.1.0/bin/npm run build || { echo "building the crm app failed"; exit 1; }
 
   echo "restarting the app"
-  ~/.nvm/versions/node/v21.1.0/bin/pm2 restart gam || { echo "restarting the app failed"; exit 1; }
+  /root/.nvm/versions/node/v21.1.0/bin/pm2 restart gam || { echo "restarting the app failed"; exit 1; }
 
   echo "Deploy cdapp script finished at $(date)"
 } >> "$LOG_FILE" 2>&1
