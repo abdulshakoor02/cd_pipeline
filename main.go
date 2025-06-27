@@ -57,10 +57,27 @@ func crmHandler(w http.ResponseWriter, r *http.Request) {
 	log.Printf("Deploy triggered %v", w)
 }
 
+func gamHandler(w http.ResponseWriter, r *http.Request) {
+	if r.Method != "POST" {
+		http.Error(w, "Invalid method", http.StatusMethodNotAllowed)
+		return
+	}
+	// You can parse the payload here if needed
+	go func() {
+		cmd := exec.Command("bash", "-lc", "./sh/gam_pipeline.sh")
+		err := cmd.Run()
+		if err != nil {
+			log.Printf("Deploy for gam website failed: %v", err)
+		}
+	}()
+	log.Printf("Deploy triggered %v", w)
+}
+
 func main() {
 	http.HandleFunc("/erp_backend", handler)
 	http.HandleFunc("/cd", cdHandler)
 	http.HandleFunc("/crm", crmHandler)
+	http.HandleFunc("/gam", gamHandler)
 	fmt.Println("Listening on :9000")
 	log.Fatal(http.ListenAndServe(":9000", nil))
 }
